@@ -16,6 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get :api_movie, controller: :movies
-  get :movies_table_row, controller: :movies
+  get :api_data, controller: :movies
 end

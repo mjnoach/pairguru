@@ -14,11 +14,7 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
-  # after_initialize :fetch_api_data, unless: :skip_callbacks
-
   attr_accessor :plot, :rating, :poster_url
-
-  # private
 
   def fetch_api_data
     data = MovieFetcher.new.call(self[:title])
