@@ -1,4 +1,6 @@
 FactoryBot.define do
+  Movie.skip_callbacks = true
+
   factory :movie do
     title { Faker::Lorem.word }
     description { Faker::Lorem.sentence(3, true) }
