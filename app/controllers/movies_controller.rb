@@ -20,4 +20,14 @@ class MoviesController < ApplicationController
     MovieExporter.new.call(current_user, file_path)
     redirect_to root_path, notice: "Movies exported"
   end
+
+  def movies_table_row
+    @movie = Movie.find(params[:movie]).fetch_api_data
+    render partial: "movies_table_row", locals: {i: params[:row_number]}
+  end
+
+  def api_movie
+    @movie = Movie.find(params[:movie]).fetch_api_data
+    render partial: "show"
+  end
 end

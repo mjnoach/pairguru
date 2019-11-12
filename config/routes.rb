@@ -15,4 +15,7 @@ Rails.application.routes.draw do
       get :export
     end
   end
+
+  get :api_movie, controller: :movies
+  get :movies_table_row, controller: :movies
 end
