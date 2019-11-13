@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:id]).decorate(context: {current_user: current_user})
   end
 
   def send_info
