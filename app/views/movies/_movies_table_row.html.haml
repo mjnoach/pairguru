@@ -1,11 +1,12 @@
-%td= row_number.to_i + 1
-%td
-  %img.img-rounded{ src: @movie.poster_url, width: '100', height: '150' }
-%td
-  %h4= link_to @movie.title, movie_path(@movie)
-  %p
-    %strong
-      = link_to @movie.genre.name, movies_genre_path(@movie.genre)
-    = ' (' + @movie.released_at.to_s + ')'
-  %p= @movie.plot
-  %h5= "Rating: " + @movie.rating
+= cache render_async_cache_key(request.original_url), skip_digest: true do
+  %td= row_number.to_i + 1
+  %td
+    %img.img-rounded{ src: @movie.poster_url, width: '100', height: '150' }
+  %td
+    %h4= link_to @movie.title, movie_path(@movie)
+    %p
+      %strong
+        = link_to @movie.genre.name, movies_genre_path(@movie.genre)
+      = ' (' + @movie.released_at.to_s + ')'
+    %p= @movie.plot
+    %h5= "Rating: " + @movie.rating
