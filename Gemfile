@@ -39,3 +39,5 @@ end
 group :test do
   gem "shoulda-matchers"
 end
+
+gem "grape"
