@@ -41,3 +41,4 @@ group :test do
 end
 
 gem "grape"
+gem 'rack-cors'
