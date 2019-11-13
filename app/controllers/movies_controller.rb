@@ -17,7 +17,8 @@ class MoviesController < ApplicationController
 
   def export
     file_path = "tmp/movies.csv"
-    MovieExporter.new.call(current_user, file_path)
+    # MovieExporter.new.call(current_user, file_path)
+    MoviesExportJob.perform_later(current_user, file_path)
     redirect_to root_path, notice: "Movies exported"
   end
 end
