@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
   end
 
   def api_data
-    @movie = Movie.find(params[:movie]).fetch_api_data
+    @movie = Movie.find(params[:id]).fetch_api_data
     render partial: params[:partial_view], locals: params[:locals]
   end
 end

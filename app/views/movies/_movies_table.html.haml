@@ -1,6 +1,6 @@
 %table.table.table-striped
   %tbody
     - movies.each_with_index do |movie, i|
-      = render_async_cache api_data_path(movie: movie, locals: {row_number: i}, partial_view: "movies_table_row"), html_element_name: 'tr'
+      = render_async_cache api_data_path(id: movie, locals: {row_number: i}, partial_view: "movies_table_row"), html_element_name: 'tr'
 .loader-bar.text-center{ :style => "margin: 30px;" }
   = image_tag("loader-bar.gif")
