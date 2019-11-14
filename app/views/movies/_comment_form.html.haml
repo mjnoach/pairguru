@@ -1,6 +1,6 @@
-= simple_form_for :comment, url: comments_path(movie: @movie.id), method: :post do |f|
-  = f.error_notification
-  = f.error :body
+/ %h4= @comment.errors.full_messages
+
+= simple_form_for :comment, url: movie_comments_path(@movie.id), method: :post do |f|
   = f.input :body, as: :text, label: false, input_html: { rows: 5, style: "resize: none" }
   = f.submit "Submit", class: "btn btn-primary"
 %br

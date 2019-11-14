@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    comment = current_user.comments.new(comment_params)
-    comment.movie = Movie.find(params[:movie])
-    comment.save
+    @comment = current_user.comments.new(comment_params)
+    @comment.movie = Movie.find(params[:movie_id])
+    @comment.save
     redirect_back(fallback_location: root_path)
   end
 
