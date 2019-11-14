@@ -1,4 +1,6 @@
-%h4= session[:comment_errors]
+- session[:comment_errors] && session[:comment_errors].each do |error|
+  .alert.alert-danger
+    = error
 = form_with model: @comment, url: movie_comments_path(@movie.id), class: "form-group" do |f|
   = f.text_area :body, style: "resize: none", rows: "5", class: "form-control"
   = f.submit "Submit", style: "margin-top: 10px", class: "btn btn-primary"
