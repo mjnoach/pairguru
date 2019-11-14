@@ -1,9 +1,47 @@
 require "rails_helper"
 
 describe "Comments requests", type: :request do
-  let!(:movies) { create_list(:movie, 10) }
+
+  describe "top commenters" do
+
+    describe "movies without comments" do
+      let!(:movies) { create_list(:movie, 10) }
+
+      it "top commenters table is empty" do
+        visit "/top_commenters"
+        expect(page).to have_selector("table")
+        expect(page).not_to have_selector("tbody tr")
+      end
+    end
+
+    describe "movies with comments" do
+      let!(:movies) { create_list(:movie, 10, :with_comments) }
+      let!(:current_user) do |user|
+        user = create(:user)
+        user.confirm
+        sign_in user
+        user
+      end
+
+      it "displays top 10 commenters" do
+        visit "/top_commenters"
+        expect(page).to have_selector("tbody tr", count: 10)
+      end
+
+      it "displays user with most comments at the top" do
+        movies.each do |movie|
+          body = Faker::Lorem.sentence
+          post movie_comments_path(movie.id, body: body)
+        end
+
+        visit "/top_commenters"
+        expect(page).to have_selector("tbody tr", text: "1 #{current_user.name}")
+      end
+    end
+  end
 
   context "when logged in" do
+    let!(:movies) { create_list(:movie, 10) }
     let!(:current_user) do |user|
       user = create(:user)
       user.confirm
