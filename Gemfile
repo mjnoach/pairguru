@@ -39,5 +39,3 @@ end
 group :test do
   gem "shoulda-matchers"
 end
-
-gem "simple_form", "~> 5.0"
