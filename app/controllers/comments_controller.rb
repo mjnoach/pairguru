@@ -2,9 +2,11 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @comment = current_user.comments.new(comment_params)
-    @comment.movie = Movie.find(params[:movie_id])
-    @comment.save
+    comment = current_user.comments.new(comment_params)
+    comment.movie = Movie.find(params[:movie_id])
+    if !comment.save
+      session[:comment_errors] = comment.errors.full_messages
+    end
     redirect_back(fallback_location: root_path)
   end
 
@@ -16,6 +18,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.permit(:body)
   end
 end

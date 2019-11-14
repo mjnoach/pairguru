@@ -8,8 +8,10 @@ class MovieDecorator < Draper::Decorator
   end
 
   def current_user_comment
-    @current_user_comment ||= comments.find_by_user_id(context[:current_user].id)
-    @current_user_comment.decorate if !@current_user_comment.nil?
+    if context[:current_user]
+      @current_user_comment ||= comments.find_by_user_id(context[:current_user].id)
+      @current_user_comment.decorate if !@current_user_comment.nil?
+    end
   end
 
   def other_comments
