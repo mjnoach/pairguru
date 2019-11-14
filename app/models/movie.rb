@@ -19,7 +19,7 @@ class Movie < ApplicationRecord
   def fetch_api_data
     data = MovieFetcher.new.call(self[:title])
     @plot = data['plot']
-    @rating = data['rating'].to_s
+    @rating = data['rating']
     @poster_url = data['poster']
     self
   end
