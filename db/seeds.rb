@@ -82,3 +82,16 @@ if Movie.count < 100
     )
   end
 end
+
+Rails.logger.info "Creating comments..."
+
+User.all.each do |user|
+  num_of_comments = Random.rand(100)
+  num_of_comments.times do |i|
+    Comment.create!(
+      body: Faker::Lorem.paragraph,
+      user_id: user.id,
+      movie_id: i+1
+    )
+  end
+end
