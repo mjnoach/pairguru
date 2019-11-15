@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.movie = Movie.find(params[:movie_id])
     if !comment.save
-      session[:comment_errors] = comment.errors.full_messages
+      flash[:comment_errors] = comment.errors.full_messages
     end
     redirect_back(fallback_location: root_path)
   end

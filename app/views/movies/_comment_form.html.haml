@@ -1,4 +1,4 @@
-- session[:comment_errors] && session[:comment_errors].each do |error|
+- flash[:comment_errors] && flash[:comment_errors].each do |error|
   .alert.alert-danger
     = error
 = form_with model: @comment, url: movie_comments_path(@movie.id), class: "form-group" do |f|
