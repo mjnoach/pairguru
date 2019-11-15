@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Comments requests", type: :request do
-  let!(:movies) { create_list(:movie, 10, :with_comments) }
+  let!(:movies) { create_list(:movie, 10) }
 
   context "when logged in" do
     let!(:current_user) do |user|
