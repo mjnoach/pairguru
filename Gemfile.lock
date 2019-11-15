@@ -109,6 +109,7 @@ GEM
     faker (1.8.7)
       i18n (>= 0.7)
     ffi (1.9.23)
+    foreman (0.86.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -310,6 +311,7 @@ DEPENDENCIES
   draper
   factory_bot_rails
   faker
+  foreman (~> 0.86.0)
   haml-rails
   jquery-rails
   letter_opener

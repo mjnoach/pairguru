@@ -41,3 +41,5 @@ group :test do
 end
 
 gem "sidekiq", "~> 6.0"
+
+gem "foreman", "~> 0.86.0"
