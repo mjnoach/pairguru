@@ -13,9 +13,9 @@ describe "Comments requests", type: :request do
 
     describe "valid comment" do
       let(:movie) { movies.sample }
+      let(:body) { Faker::Lorem.sentence(1, true)}
 
       before(:each) do
-        body = Faker::Lorem.sentence(1, true)
         post movie_comments_path(movie.id, body: body)
       end
 
@@ -27,10 +27,20 @@ describe "Comments requests", type: :request do
         expect { post movie_comments_path(movie.id, body: body) }.to raise_error(ActionController::BadRequest)
       end
 
-      it "can be deleted" do
-        comment = Comment.find_by(user_id: current_user, movie_id: movie.id)
-        delete movie_comment_path(movie.id, comment.id)
-        expect(response).to have_http_status(302)
+      context "can be deleted" do
+        before(:each) do 
+          comment = Comment.find_by(user_id: current_user, movie_id: movie.id)
+          delete movie_comment_path(movie.id, comment.id)
+        end
+
+        it "successfully" do
+          expect(response).to have_http_status(302)
+        end
+
+        it "and added again" do
+          post movie_comments_path(movie.id, body: body)
+          expect(response).to have_http_status(302)
+        end
       end
     end
 
