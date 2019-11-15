@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
     else
       flash[:comment_errors] = comment.errors.full_messages
-      redirect_back(fallback_location: root_path, status: :bad_request)
+      redirect_back(fallback_location: root_path)
     end
   end
 

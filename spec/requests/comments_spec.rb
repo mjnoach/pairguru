@@ -47,7 +47,6 @@ describe "Comments requests", type: :request do
     describe "invalid comment" do
       it "passes an error when comment is not valid" do
         post movie_comments_path(movies.sample.id, body: "")
-        expect(response).to have_http_status(:bad_request)
         expect(flash[:comment_errors]).not_to be_empty
       end
     end
