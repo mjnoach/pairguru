@@ -17,11 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def top_commenters
-    ranking = Comment.group(:user_id).order("COUNT(id) DESC").limit(10).count(:id)
-    @top_commenters = User.find(ranking.keys)
-    @top_commenters.each do |user|
-      user.comments_count = ranking[user.id]
-    end
+    @top_commenters = Comment.top_commenters
   end
 
   private

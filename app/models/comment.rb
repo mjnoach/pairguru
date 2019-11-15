@@ -4,8 +4,11 @@ class Comment < ApplicationRecord
 
   validates :body, presence: true
 
-  # scope :by_number_of_comments, -> {
-  #   group: "user_id",
-  #   order: "COUNT(id) DESC"
-  # }
+  def self.top_commenters
+    ranking = group(:user_id).order(Arel.sql('COUNT(id) DESC')).limit(10).count(:id)
+    ranking.map do |user_id, comments_count|
+      user_name = User.find(user_id).name
+      [user_name, comments_count]
+    end
+  end
 end

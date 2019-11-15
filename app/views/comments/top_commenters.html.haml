@@ -8,8 +8,8 @@
           %th User
           %th Number of comments
       %tbody
-        - @top_commenters.each_with_index do |user, i|
+        - @top_commenters.each_with_index do |(user_name, comments_count), i|
           %tr
             %td= i + 1
-            %td= user.name
-            %td= user.comments_count 
+            %td= user_name
+            %td= comments_count
