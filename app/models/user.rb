@@ -26,4 +26,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
+  
+  attr_accessor :comments_count
 end
