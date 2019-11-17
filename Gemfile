@@ -45,3 +45,5 @@ gem "render_async", "~> 2.1"
 gem "grape"
 gem 'rack-cors'
 gem 'grape-active_model_serializers'
+gem "sidekiq", "~> 6.0"
+gem "foreman", "~> 0.86.0"
