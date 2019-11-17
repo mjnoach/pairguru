@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  mount API::Base, at: "/"
+
   root "home#welcome"
   resources :genres, only: :index do
     member do
@@ -15,4 +17,6 @@ Rails.application.routes.draw do
       get :export
     end
   end
+
+  get :api_data, controller: :movies
 end

@@ -17,5 +17,15 @@ module Pairguru
     # the framework and any gems in your application.
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins "*"
+        resource "*", headers: :any, methods: [:get, :post, :put, :delete, :options]
+      end
+    end
+
+    # This will render jQuery code, and skip Vanilla JS code
+    RenderAsync.configuration.jquery = true
   end
 end
