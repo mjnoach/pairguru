@@ -14,4 +14,13 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
+  attr_accessor :plot, :rating, :poster_url
+
+  def fetch_api_data
+    data = MovieFetcher.new.call(self[:title])
+    @plot = data['plot']
+    @rating = data['rating']
+    @poster_url = data['poster']
+    self
+  end
 end

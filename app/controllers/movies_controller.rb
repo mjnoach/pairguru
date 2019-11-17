@@ -2,11 +2,11 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info]
 
   def index
-    @movies = Movie.all.decorate
+    @movies = Movie.all
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:id]).fetch_api_data
   end
 
   def send_info
@@ -19,5 +19,10 @@ class MoviesController < ApplicationController
     file_path = "tmp/movies.csv"
     MovieExporter.new.call(current_user, file_path)
     redirect_to root_path, notice: "Movies exported"
+  end
+
+  def api_data
+    @movie = Movie.find(params[:id]).fetch_api_data
+    render partial: params[:partial_view], locals: params[:locals]
   end
 end

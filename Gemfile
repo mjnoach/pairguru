@@ -39,3 +39,7 @@ end
 group :test do
   gem "shoulda-matchers"
 end
+
+gem "httparty", "~> 0.17.1"
+
+gem "render_async", "~> 2.1"
