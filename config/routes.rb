@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  mount API::Base, at: "/"
+
   root "home#welcome"
   resources :genres, only: :index do
     member do
