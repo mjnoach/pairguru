@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   def top_commenters
     @top_commenters = Comment.top_commenters
   end
-
+  
   private
 
   def comment_params
