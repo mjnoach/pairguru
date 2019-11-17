@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get :export
     end
+    resources :comments, only: [:create, :destroy]
   end
 
   get :api_data, controller: :movies

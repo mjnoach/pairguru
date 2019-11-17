@@ -6,4 +6,19 @@ class MovieDecorator < Draper::Decorator
       %w[abstract nightlife transport].sample +
       "?a=" + SecureRandom.uuid
   end
+
+  def current_user_comment
+    if context[:current_user]
+      @current_user_comment ||= comments.find_by_user_id(context[:current_user].id)
+      @current_user_comment.decorate if !@current_user_comment.nil?
+    end
+  end
+
+  def other_comments
+    comments.decorate - [current_user_comment]
+  end
+
+  def comments
+    @comments ||= object.comments
+  end
 end

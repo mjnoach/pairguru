@@ -1,0 +1,23 @@
+%br
+%h4 Comments
+%br
+- if !@movie.current_user_comment
+  = render 'comment_form'
+- else
+  %p= link_to 'Delete my comment', movie_comment_path(@movie.id, @movie.current_user_comment.id), method: :delete, class: 'btn btn-sm btn-default'
+- if @movie.comments.empty?
+  No comments yet
+- else
+  .row.col-md-10
+    %ul.list-group.list-group-flush
+      - if @movie.current_user_comment
+        %li.list-group-item
+          %b
+            %p= @movie.current_user_comment.user_name
+          = @movie.current_user_comment.body
+      %br
+      - @movie.other_comments.each_with_index do |comment, i|
+        %li.list-group-item
+          %b
+            %p= comment.user_name
+          = comment.body
