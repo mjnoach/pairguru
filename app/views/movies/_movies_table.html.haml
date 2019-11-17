@@ -1,15 +1,6 @@
 %table.table.table-striped
   %tbody
     - movies.each_with_index do |movie, i|
-      %tr
-        %td= i + 1
-        %td
-          %img.img-rounded{ src: movie.cover }
-        %td
-          %h4
-            = link_to movie.title, movie_path(movie)
-          %p
-            %strong
-              = link_to movie.genre.name, movies_genre_path(movie.genre)
-            = ' (' + movie.released_at.to_s + ')'
-          %p= movie.description
+      = render_async_cache api_data_path(id: movie, locals: {row_number: i}, partial_view: "movies_table_row"), html_element_name: 'tr'
+.loader-bar.text-center{ :style => "margin: 30px;" }
+  = image_tag("loader-bar.gif")
