@@ -40,6 +40,8 @@ group :test do
   gem "shoulda-matchers"
 end
 
+gem "httparty", "~> 0.17.1"
+gem "render_async", "~> 2.1"
 gem "grape"
 gem 'rack-cors'
 gem 'grape-active_model_serializers'

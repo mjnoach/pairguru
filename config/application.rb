@@ -22,5 +22,8 @@ module Pairguru
         resource "*", headers: :any, methods: [:get, :post, :put, :delete, :options]
       end
     end
+
+    # This will render jQuery code, and skip Vanilla JS code
+    RenderAsync.configuration.jquery = true
   end
 end
