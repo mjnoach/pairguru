@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:top_commenters]
 
   def create
     comment = CommentCreator.new(current_user, params[:movie_id], comment_params).call
@@ -16,6 +16,10 @@ class CommentsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def top_commenters
+    @top_commenters = Comment.top_commenters
+  end
+  
   private
 
   def comment_params
