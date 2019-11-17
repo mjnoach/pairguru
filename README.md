@@ -1,3 +1,9 @@
+## Installation
+ - run `rake db:setup`
+ - if not yet running, start Redis with `redis-server`
+ - run `foreman start -f Procfile.dev` to start both rails server and sidekiq process
+
+
 # Please do NOT open any pull requests to this repository!
 
 ## Welcome to Pairguru App!
